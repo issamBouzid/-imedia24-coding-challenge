@@ -37,16 +37,16 @@ class ProductController(private val productService: ProductService) {
             @PathVariable("skus") skus: List<String>
     ):ResponseEntity<Map<String,ProductResponse>>{
         val products = HashMap<String,ProductResponse>()
-        return if(skus.isEmpty()) {
+        if(skus.isEmpty()) {
               throw ProductException("the skus parameter is empty!")
         }else {
             for (sku in skus) {
                 val productResponse = productService.findProductBySku(sku) ?: continue
                 products[sku] = productResponse
             }
-            if(products.isEmpty()) throw ProductException("no products exist with the given skus!")
-            return ResponseEntity.ok(products)
         }
+        if(products.isEmpty()) throw ProductException("no products exist with the given skus!")
+        return ResponseEntity.ok(products)
     }
 
     @ApiOperation(value = "Add a new product and fill its quantity in product stock table ")

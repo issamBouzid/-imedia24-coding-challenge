@@ -8,6 +8,7 @@ import de.imedia24.shop.domain.product.ProductRequest
 import de.imedia24.shop.domain.product.ProductResponse
 import de.imedia24.shop.domain.product.ProductResponse.Companion.toProductResponse
 import de.imedia24.shop.domain.product.ProductUpdate
+import de.imedia24.shop.exception.ProductException
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.ZonedDateTime
@@ -25,6 +26,13 @@ class ProductService(private val productRepository: ProductRepository,
     }
 
     fun createProduct(productRequest: ProductRequest): ProductResponse {
+        productRepository.findAll().forEach {
+            product ->
+            run {
+                if (product.sku == productRequest.sku)
+                    throw ProductException("Product with sku ${productRequest.sku} already exist")
+            }
+        }
         val productEntity = ProductEntity(
                 sku = productRequest.sku,
                 name = productRequest.name,
