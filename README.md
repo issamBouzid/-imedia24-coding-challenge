@@ -10,11 +10,10 @@ but the idea was to put all the products stock informations in a separate table
 
 #### Docker file
 
-build the docker image by :
+build the docker image and run the container by :
 
+```bash
 > cd the-root-project-folder
 > docker build --build-arg SHOP_JAR_FILE=build/libs/shop-0.0.1-SNAPSHOT.jar -t repo/img-name:tag .
-
-run the container by :
-
 > docker run -p 8080:8080 repo/img-name:tag --name shop-imedia24
+```
