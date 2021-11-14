@@ -2,10 +2,10 @@
 
 #### Approach for task 3 to add a stock information
 
-Adding a ***ProductStock table where we identify the product and provide quantity information as a field.
-Saving a new product implies saving its stock information in the ***ProductStock table
+Adding a **ProductStock** table where we identify the product and provide quantity information as a field.
+Saving a new product implies saving its stock information in the **ProductStock** table
 
-we could keep it simple by adding a stock information field to the ***Product table
+we could keep it simple by adding a stock information field to the **Product** table
 but the idea was to put all the products stock informations in a separate table
 
 #### Docker file
