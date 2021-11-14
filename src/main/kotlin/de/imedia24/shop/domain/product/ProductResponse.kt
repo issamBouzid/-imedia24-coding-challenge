@@ -4,10 +4,11 @@ import de.imedia24.shop.db.entity.ProductEntity
 import java.math.BigDecimal
 
 data class ProductResponse(
-    val sku: String,
-    val name: String,
-    val description: String,
-    val price: BigDecimal
+        val sku: String,
+        val name: String,
+        val description: String,
+        val price: BigDecimal,
+        var quantity: Int = 0,
 ) {
     companion object {
         fun ProductEntity.toProductResponse() = ProductResponse(

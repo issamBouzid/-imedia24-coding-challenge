@@ -1,12 +1,10 @@
 package de.imedia24.shop.db.entity
 
+import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.math.BigDecimal
 import java.time.ZonedDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "products")
@@ -24,7 +22,7 @@ data class ProductEntity(
     @Column(name = "price", nullable = false)
     val price: BigDecimal,
 
-    @UpdateTimestamp
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     val createdAt: ZonedDateTime,
 

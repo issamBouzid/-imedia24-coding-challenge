@@ -8,3 +8,10 @@ CREATE TABLE products
     created_at  TIMESTAMP     NOT NULL,
     updated_at  TIMESTAMP     NOT NULL
 );
+
+CREATE TABLE productStock
+(
+    product_id  VARCHAR(16)  NOT NULL CONSTRAINT pk_product_ref_id PRIMARY KEY,
+    quantity  DECIMAL    NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(sku)
+);
