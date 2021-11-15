@@ -14,6 +14,7 @@ build the docker image and run the container by :
 
 ```bash
 > cd the-root-project-folder
+> ./gradlew build
 > docker build --build-arg SHOP_JAR_FILE=build/libs/shop-0.0.1-SNAPSHOT.jar -t repo/img-name:tag .
 > docker run -p 8080:8080 repo/img-name:tag --name shop-imedia24
 ```
