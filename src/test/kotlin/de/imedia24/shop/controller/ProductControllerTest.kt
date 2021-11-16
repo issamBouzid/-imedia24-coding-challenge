@@ -43,23 +43,19 @@ class ProductControllerTest {
 		val requestProd1 = ProductRequest(sku = "prod1", name = "phone1", description = "brand new 1", price = BigDecimal(87000),quantity = 1000)
 		val requestProd2 = ProductRequest(sku = "prod2", name = "phone2", description = "brand new 2", price = BigDecimal(26700),quantity = 1500)
 
-		mockMvc.post("/products"){
-			contentType = MediaType.APPLICATION_JSON
-			content = objectMapper.writeValueAsString(requestProd1)
-		}
-				.andDo { print() }
+		val listOfProducts = listOf<ProductRequest>(requestProd1,requestProd2)
+		listOfProducts.forEach{
+			productRequest ->
+			run {
+					mockMvc.post("/products"){
+					contentType = MediaType.APPLICATION_JSON
+					content = objectMapper.writeValueAsString(productRequest)
+				}.andDo { print() }
 				.andExpect {
 					status { isCreated() }
 				}
-
-		mockMvc.post("/products"){
-			contentType = MediaType.APPLICATION_JSON
-			content = objectMapper.writeValueAsString(requestProd2)
+			}
 		}
-				.andDo { print() }
-				.andExpect {
-					status { isCreated() }
-				}
 	}
 
 	@Nested
